@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="40dp"
+    android:orientation="vertical"
+    tools:context=".AdminObatActivity">
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Tambah Obat"
+        android:textSize="24sp" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
+
+    <EditText
+        android:id="@+id/etNama"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Nama Obat"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/etHarga"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Harga"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/etStok"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Jumlah Stok"
+        android:inputType="textPersonName" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Jenis" />
+
+        <RadioButton
+            android:id="@+id/rbBubuk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Bubuk" />
+
+        <RadioButton
+            android:id="@+id/rbCair"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cair / Sirup" />
+
+        <RadioButton
+            android:id="@+id/rbTablet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tablet" />
+
+        <RadioButton
+            android:id="@+id/rbKapsul"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Kapsul" />
+    </RadioGroup>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btKembali"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Kembali" />
+
+        <Space
+            android:layout_width="10dp"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btTambah"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Tambah" />
+    </LinearLayout>
+
+</LinearLayout>
