@@ -28,7 +28,10 @@ class LoginActivity : AppCompatActivity() {
         btToRegister = findViewById(R.id.btToRegister)
 
         //DEBUG
-        User.listUser.add(User("a", "a", "a", "12345678"))
+        User.listUser.add(User("a", "David", "a", "12345678"))
+        User.listUser[0].history.add(History("# 1", 188000, 3))
+        User.listUser[0].history.add(History("2", 96000, 4))
+        User.listUser[0].history.add(History("3", 52000, 2))
         etUsername.setText("a")
         etPassword.setText("a")
         Obat.listObat.add(Obat("OBH Cair", 16000, 5, "Cair"))
