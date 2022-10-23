@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Apotek</string>
+    <string-array name="jenis_array">
+        <item>Semua</item>
+        <item>Bubuk</item>
+        <item>Cair</item>
+        <item>Tablet</item>
+        <item>Kapsul</item>
+    </string-array>
 </resources>

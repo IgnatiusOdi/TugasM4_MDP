@@ -4,21 +4,21 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 import java.text.NumberFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 @Parcelize
-class Obat(
-    var nama: String,
-    var harga: Int,
-    var stok: Int,
-    var jenis: String,
+class History (
+    val nama: String,
+    val total: Int,
+    val item: Int,
 ): Parcelable {
     companion object {
-        var listObat = ArrayList<Obat>()
+        var listHistory = ArrayList<History>()
     }
 
     override fun toString(): String {
         val locale = Locale("id", "ID")
         val number = NumberFormat.getCurrencyInstance(locale)
-        return "$nama ($jenis) [$stok] - Rp. ${number.format(harga)},00"
+        return "$nama - Rp. ${number.format(total)},00 - $item item"
     }
 }

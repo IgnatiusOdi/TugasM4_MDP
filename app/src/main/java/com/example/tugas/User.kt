@@ -9,6 +9,7 @@ class User(
     val name: String,
     val password: String,
     val nomortelepon: String,
+    var history: ArrayList<History> = arrayListOf()
 ): Parcelable {
     companion object {
         var listUser = ArrayList<User>()

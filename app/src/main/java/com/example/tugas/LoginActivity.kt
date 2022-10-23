@@ -1,5 +1,6 @@
 package com.example.tugas
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -16,6 +17,7 @@ class LoginActivity : AppCompatActivity() {
 
     private var indexUser = -1
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -27,8 +29,20 @@ class LoginActivity : AppCompatActivity() {
 
         //DEBUG
         User.listUser.add(User("a", "a", "a", "12345678"))
-        etUsername.setText("admin")
-        etPassword.setText("admin")
+        etUsername.setText("a")
+        etPassword.setText("a")
+        Obat.listObat.add(Obat("OBH Cair", 16000, 5, "Cair"))
+        Obat.listObat.add(Obat("Tolak Angin", 3000, 4, "Cair"))
+        Obat.listObat.add(Obat("Panadol Merah", 12000, 2, "Tablet"))
+        Obat.listObat.add(Obat("Panadol Hijau", 15000, 10, "Tablet"))
+        Obat.listObat.add(Obat("Panadol Biru", 8000, 7, "Tablet"))
+        Obat.listObat.add(Obat("Vitamin C 500gr isi 100", 82000, 12, "Kapsul"))
+        History.listHistory.add(History("David", 84000, 3))
+        History.listHistory.add(History("Daniel", 32000, 2))
+        History.listHistory.add(History("David", 124000, 4))
+        History.listHistory.add(History("Wete", 50000, 1))
+        History.listHistory.add(History("Lawrence", 160000, 2))
+        History.listHistory.add(History("Bima", 12000, 1))
 
         btLogin.setOnClickListener {
             indexUser = loginCheck()
@@ -38,6 +52,7 @@ class LoginActivity : AppCompatActivity() {
                     startActivity(intent)
                 } else {
                     val intent = Intent(this, CustomerHomepageActivity::class.java)
+                    intent.putExtra("idxUser", indexUser)
                     startActivity(intent)
                 }
             }

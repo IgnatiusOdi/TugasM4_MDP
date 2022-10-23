@@ -26,7 +26,8 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Nama Obat"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:text="OBH Cair" />
 
     <EditText
         android:id="@+id/etHarga"
@@ -34,7 +35,8 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Harga"
-        android:inputType="textPersonName" />
+        android:inputType="number"
+        android:text="16000" />
 
     <EditText
         android:id="@+id/etStok"
@@ -42,7 +44,8 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Jumlah Stok"
-        android:inputType="textPersonName" />
+        android:inputType="number"
+        android:text="10" />
 
     <Space
         android:layout_width="match_parent"
@@ -101,7 +104,7 @@
             android:layout_height="wrap_content" />
 
         <Button
-            android:id="@+id/btTambah"
+            android:id="@+id/btAction"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"

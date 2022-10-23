@@ -9,7 +9,7 @@
     tools:context=".CustomerHomepageActivity">
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/tvName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Hi, $user.name !" />
@@ -53,11 +53,12 @@
                 android:inputType="textPersonName" />
 
             <Spinner
-                android:id="@+id/spinner"
+                android:id="@+id/jenisSpinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:entries="@array/jenis_array" />
         </TableRow>
 
     </TableLayout>

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_margin="40dp"
     android:orientation="vertical"
-    tools:context=".AdminHistory">
+    tools:context=".AdminHistoryActivity">
 
     <TextView
         android:id="@+id/textView3"
@@ -14,24 +14,13 @@
         android:layout_height="wrap_content"
         android:text="History" />
 
-    <ScrollView
+    <ListView
+        android:id="@+id/listHistory"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <ListView
-                android:id="@+id/listHistory"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-            </ListView>
-        </LinearLayout>
-    </ScrollView>
+    </ListView>
 
     <Button
         android:id="@+id/btKembali_history"
