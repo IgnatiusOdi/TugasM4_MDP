@@ -8,10 +8,16 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import java.text.NumberFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class ObatAdapter(
     private val context: Activity,
-) : ArrayAdapter<Obat>(context, R.layout.obat_list) {
+    private val listObat: ArrayList<Obat>,
+    private val jumlahObat: ArrayList<Int>,
+    private val onItemClickListener: (jumlahObat: ArrayList<Int>) -> Unit,
+) : ArrayAdapter<Int>(context, R.layout.obat_list, jumlahObat) {
     @SuppressLint("SetTextI18n")
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val view = context.layoutInflater.inflate(R.layout.obat_list, null, true)
@@ -23,17 +29,34 @@ class ObatAdapter(
         val btMinus = view.findViewById<Button>(R.id.btMinus)
         val btPlus = view.findViewById<Button>(R.id.btPlus)
 
+        val locale = Locale("id", "ID")
+        val number = NumberFormat.getCurrencyInstance(locale)
+
         tvNama.text = Obat.listObat[position].nama
         tvStok.text = "0"
-        tvHarga.text = "Rp. ${Obat.listObat[position].harga},00"
-        tvSubtotal.text = "Rp. 0,00"
+        tvHarga.text = "${number.format(Obat.listObat[position].harga)},00"
+        tvSubtotal.text = "Rp0,00"
 
         btMinus.setOnClickListener {
-            Toast.makeText(context, "Minus", Toast.LENGTH_SHORT).show()
+            if (jumlahObat[position] - 1 < 0) {
+                Toast.makeText(context, "Tidak boleh kurang dari 0!", Toast.LENGTH_SHORT).show()
+            } else {
+                jumlahObat[position] -= 1
+                tvStok.text = jumlahObat[position].toString()
+                tvSubtotal.text = "${number.format(Obat.listObat[position].harga * jumlahObat[position])},00"
+                onItemClickListener(jumlahObat)
+            }
         }
         
         btPlus.setOnClickListener {
-            Toast.makeText(context, "Plus", Toast.LENGTH_SHORT).show()
+            if (jumlahObat[position] + 1 > listObat[position].stok) {
+                Toast.makeText(context, "Stok tidak mencukupi!", Toast.LENGTH_SHORT).show()
+            } else {
+                jumlahObat[position] += 1
+                tvStok.text = jumlahObat[position].toString()
+                tvSubtotal.text = "${number.format(Obat.listObat[position].harga * jumlahObat[position])},00"
+                onItemClickListener(jumlahObat)
+            }
         }
 
         return view

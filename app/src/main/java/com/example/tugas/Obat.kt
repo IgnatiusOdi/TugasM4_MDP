@@ -19,6 +19,6 @@ class Obat(
     override fun toString(): String {
         val locale = Locale("id", "ID")
         val number = NumberFormat.getCurrencyInstance(locale)
-        return "$nama ($jenis) [$stok] - Rp. ${number.format(harga)},00"
+        return "$nama ($jenis) [$stok] - ${number.format(harga)},00"
     }
 }

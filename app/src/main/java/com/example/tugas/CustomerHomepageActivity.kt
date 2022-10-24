@@ -10,7 +10,8 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.*
-import java.util.ArrayList
+import java.text.NumberFormat
+import java.util.*
 
 class CustomerHomepageActivity : AppCompatActivity() {
 
@@ -25,6 +26,7 @@ class CustomerHomepageActivity : AppCompatActivity() {
     lateinit var obatAdapter: ObatAdapter
 //    lateinit var adapter: ArrayAdapter<*>
     var filterObat = Obat.listObat
+    var jumlahObat = ArrayList<Int>()
     var totalBiaya = 0
 
     @SuppressLint("SetTextI18n")
@@ -44,8 +46,23 @@ class CustomerHomepageActivity : AppCompatActivity() {
 
         tvName.text = "Hi, ${user.name} !"
 
-        obatAdapter = ObatAdapter(this)
+        for (i in 0 until filterObat.size) {
+            jumlahObat.add(0)
+        }
+
+        obatAdapter = ObatAdapter(this, filterObat, jumlahObat) {
+            jumlahObat ->
+            this.jumlahObat = jumlahObat
+            totalBiaya = 0
+            for (i in 0 until jumlahObat.size) {
+                totalBiaya += jumlahObat[i] * filterObat[i].harga
+            }
+            val locale = Locale("id", "ID")
+            val number = NumberFormat.getCurrencyInstance(locale)
+            tvTotalBiaya.text = "Total Biaya : ${number.format(totalBiaya)},00"
+        }
         listBeli.adapter = obatAdapter
+        obatAdapter.notifyDataSetChanged()
 
         etCariNama.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable) {}
@@ -58,12 +75,23 @@ class CustomerHomepageActivity : AppCompatActivity() {
 
         jenisSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-
+                filterObat = filterSearch()
+                obatAdapter.notifyDataSetChanged()
             }
             override fun onNothingSelected(p0: AdapterView<*>?) {}
         }
 
         btBeli.setOnClickListener {
+            var totalObat = 0
+            for (i in 0 until jumlahObat.size) {
+                totalObat += jumlahObat[i]
+            }
+            user.history.add(History("${user.history.size + 1}", totalBiaya, totalObat))
+            for (i in 0 until jumlahObat.size) {
+                jumlahObat[i] = 0
+            }
+            totalBiaya = 0
+            tvTotalBiaya.text = "Total Biaya : Rp0,00"
             obatAdapter.notifyDataSetChanged()
             Toast.makeText(this, "Berhasil beli!", Toast.LENGTH_SHORT).show()
         }
@@ -94,6 +122,10 @@ class CustomerHomepageActivity : AppCompatActivity() {
                 return Obat.listObat.filter { s -> s.nama.contains(etCariNama.text.toString(), ignoreCase = true)  && s.jenis == jenisSpinner.selectedItem.toString()} as ArrayList<Obat>
             }
             return Obat.listObat.filter { s -> s.nama.contains(etCariNama.text.toString(), ignoreCase = true)} as ArrayList<Obat>
+        } else {
+            if (jenisSpinner.selectedItemPosition != 0) {
+                return Obat.listObat.filter { s -> s.jenis == jenisSpinner.selectedItem.toString()} as ArrayList<Obat>
+            }
         }
         return Obat.listObat
     }
