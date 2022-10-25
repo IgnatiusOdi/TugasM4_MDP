@@ -83,7 +83,7 @@
         android:id="@+id/tvTotalBiaya"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Total Biaya : Rp. 0" />
+        android:text="Total Biaya : Rp.0,00" />
 
     <Button
         android:id="@+id/btBeli"

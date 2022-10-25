@@ -32,9 +32,9 @@ class ObatAdapter(
         val locale = Locale("id", "ID")
         val number = NumberFormat.getCurrencyInstance(locale)
 
-        tvNama.text = Obat.listObat[position].nama
+        tvNama.text = listObat[position].nama
         tvStok.text = "0"
-        tvHarga.text = "${number.format(Obat.listObat[position].harga)},00"
+        tvHarga.text = "${number.format(listObat[position].harga)},00"
         tvSubtotal.text = "Rp0,00"
 
         btMinus.setOnClickListener {
@@ -43,7 +43,7 @@ class ObatAdapter(
             } else {
                 jumlahObat[position] -= 1
                 tvStok.text = jumlahObat[position].toString()
-                tvSubtotal.text = "${number.format(Obat.listObat[position].harga * jumlahObat[position])},00"
+                tvSubtotal.text = "${number.format(listObat[position].harga * jumlahObat[position])},00"
                 onItemClickListener(jumlahObat)
             }
         }
@@ -54,7 +54,7 @@ class ObatAdapter(
             } else {
                 jumlahObat[position] += 1
                 tvStok.text = jumlahObat[position].toString()
-                tvSubtotal.text = "${number.format(Obat.listObat[position].harga * jumlahObat[position])},00"
+                tvSubtotal.text = "${number.format(listObat[position].harga * jumlahObat[position])},00"
                 onItemClickListener(jumlahObat)
             }
         }

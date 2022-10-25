@@ -25,7 +25,7 @@ class CustomerHomepageActivity : AppCompatActivity() {
     lateinit var user: User
     lateinit var obatAdapter: ObatAdapter
 //    lateinit var adapter: ArrayAdapter<*>
-    var filterObat = Obat.listObat
+    var filterObat: ArrayList<Obat> = arrayListOf()
     var jumlahObat = ArrayList<Int>()
     var totalBiaya = 0
 
@@ -46,6 +46,7 @@ class CustomerHomepageActivity : AppCompatActivity() {
 
         tvName.text = "Hi, ${user.name} !"
 
+        filterObat.addAll(Obat.listObat)
         for (i in 0 until filterObat.size) {
             jumlahObat.add(0)
         }
@@ -68,14 +69,24 @@ class CustomerHomepageActivity : AppCompatActivity() {
             override fun afterTextChanged(s: Editable) {}
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                filterObat = filterSearch()
+                filterObat.clear()
+                filterObat.addAll(filterSearch())
+                jumlahObat.clear()
+                for (i in 0 until filterObat.size) {
+                    jumlahObat.add(0)
+                }
                 obatAdapter.notifyDataSetChanged()
             }
         })
 
         jenisSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                filterObat = filterSearch()
+                filterObat.clear()
+                filterObat.addAll(filterSearch())
+                jumlahObat.clear()
+                for (i in 0 until filterObat.size) {
+                    jumlahObat.add(0)
+                }
                 obatAdapter.notifyDataSetChanged()
             }
             override fun onNothingSelected(p0: AdapterView<*>?) {}
